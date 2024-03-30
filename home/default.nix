@@ -34,8 +34,8 @@
     spotify
     spicetify-cli
     
-    # gaming
-    lultris
+    # mpvacious dep
+    wl-clipboard
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
