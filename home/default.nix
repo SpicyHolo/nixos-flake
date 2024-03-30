@@ -28,10 +28,14 @@
     libsForQt5.okular
     thunderbird
     prismlauncher
+    libreoffice-qt
 
     # spotify
     spotify
     spicetify-cli
+    
+    # gaming
+    lultris
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
