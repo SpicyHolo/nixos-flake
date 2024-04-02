@@ -38,7 +38,4 @@
       ];
     };
   };
-  home.packages = with pkgs; [
-    gnomeExtensions.gtk-title-bar
-  ];
 }  

@@ -4,12 +4,13 @@
     enable = true;
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
-    
+    excludePackages = [ pkgs.xterm ];
   };
 
   environment.gnome.excludePackages = (with pkgs; [
     gnome-photos
     gnome-tour
+    gnome-console
   ]) ++ (with pkgs.gnome; [
     cheese
     gnome-music
@@ -21,12 +22,11 @@
     totem
     gnome-contacts
     gnome-initial-setup
+    gnome-shell-extensions
   ]);
 
   environment.systemPackages = with pkgs; [
     gnome.gnome-tweaks
     gnome.gnome-themes-extra
     ];
-
-  programs.dconf.enable = true;
 }
