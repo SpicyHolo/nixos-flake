@@ -22,11 +22,11 @@
     totem
     gnome-contacts
     gnome-initial-setup
-    gnome-shell-extensions
   ]);
 
   environment.systemPackages = with pkgs; [
     gnome.gnome-tweaks
     gnome.gnome-themes-extra
+    gnomeExtensions.kimpanel
     ];
 }

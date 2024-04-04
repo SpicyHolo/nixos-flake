@@ -29,6 +29,7 @@
     thunderbird
     prismlauncher
     libreoffice-qt
+    sxiv
 
     # spotify
     spotify

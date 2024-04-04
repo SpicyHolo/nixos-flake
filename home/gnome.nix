@@ -34,7 +34,7 @@
     "org/gnome/shell" = {
       disable-user-extensions = false;
       enabled-extensions = [
-
+        "kimpanel@kde.org"
       ];
     };
   };
