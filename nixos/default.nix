@@ -13,7 +13,7 @@
     ];
 
 
-  # Enable plymouth (boot shell overlay)
+  # Boot loader
   boot = {
     loader = {
       systemd-boot = {
@@ -87,6 +87,7 @@
 };
 
   # Bluetooth support pipewire (future lua support)
+  
   services.pipewire.wireplumber.configPackages = [
 	(pkgs.writeTextDir "share/wireplumber/bluetooth.lua.d/51-bluez-config.lua" ''
 		bluez_monitor.properties = {
@@ -96,9 +97,26 @@
 			["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
 		} '')
   ];
-  hardware.opengl.enable = true; # enable openGL
+  
+  # OpenGL / OpenCL support
+  hardware.opengl.enable = true;
+  #nixpkgs.config.packageOverrides = pkgs: {
+  #  intel-vaapi-driver = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
+  #};
+
+  #hardware.opengl = {
+  #  enable = true;
+  #  extraPackages = with pkgs; [
+  #    intel-media-driver
+  #    intel-vaapi-driver
+  #    libvdpau-va-gl
+  #  ];
+  #};
+  
+  #environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; };
+
   # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
+  services.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
    users.users.holo = {
@@ -109,9 +127,9 @@
    };
   
   environment.systemPackages = with pkgs; [
+    neofetch
     neovim
-    kitty
-    gnome.gnome-themes-extra
+    kitty    
     xorg.xhost
     pavucontrol
   ];
@@ -147,6 +165,9 @@
 
   # Enable Docker
   virtualisation.docker.enable = true;
+
+  # Enable hyprland
+  programs.hyprland.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
