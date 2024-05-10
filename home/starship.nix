@@ -6,9 +6,9 @@
         {
             enable = true;
             settings = {
-                format = "$all";
-                palette = "catppuccin_${flavour}";
+                format = '$all'
 
+                palette = "catppuccin_${flavour}";
             } // builtins.fromTOML (builtins.readFile
                 (pkgs.fetchFromGitHub
                 {

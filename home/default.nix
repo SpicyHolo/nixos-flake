@@ -8,6 +8,7 @@
       ./git.nix
       ./nvim
       ./starship.nix
+      ./kitty.nix
     ];
 
   
@@ -25,7 +26,6 @@
     neofetch
     vscode
     qbittorrent
-    starship
     mpv
     libsForQt5.okular
     thunderbird

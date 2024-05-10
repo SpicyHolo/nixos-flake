@@ -46,21 +46,22 @@
   
   # Fonts, DejaVu for english, IPA for Japanese
   fonts.packages = with pkgs; [
-    dejavu_fonts
     ipafont
+    fira-code
+    (nerdfonts.override { fonts = ["FiraCode" "FiraMono"]; })
   ];
 
   fonts.fontconfig.defaultFonts = {
     monospace = [
-      "DejaVu Sans Mono"
+      "Fira Mono"
       "IPAMono"
     ];
     sansSerif = [
-      "DejaVu Sans"
+      "Fira Sans"
       "IPAPGothic"
     ];
     serif = [
-      "DejaVu Serif"
+      "Fira Serif"
       "IPAPMincho"
     ];
   };
@@ -117,7 +118,6 @@
   
   environment.systemPackages = with pkgs; [
     neofetch
-    kitty    
     xorg.xhost
     pavucontrol
   ];
