@@ -26,7 +26,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
 
-            home-manager.extraSpecialArgs = inputs
+            home-manager.extraSpecialArgs = inputs;
             home-manager.users.holo = import ./home;
           }
         ];

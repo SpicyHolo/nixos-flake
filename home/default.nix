@@ -7,6 +7,7 @@
       ./gnome.nix
       ./git.nix
       ./nvim
+      ./starship.nix
     ];
 
   
@@ -73,17 +74,7 @@
   programs.home-manager.enable = true;
   
   # Enable starship
-  programs.starship = { 
-    enable = true;
-    settings = {
-      format = "$username$directory$character$all";
-      add_newline = true;
-      character = {
-        success_symbol = "[➜](bold purple)";
-        error_symbol = "[➜](bold red)";        
-      };
 
-    };
-  };
+
 }
 
