@@ -100,18 +100,7 @@
   
   # OpenGL / OpenCL support
   hardware.opengl.enable = true;
-  #nixpkgs.config.packageOverrides = pkgs: {
-  #  intel-vaapi-driver = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
-  #};
-
-  #hardware.opengl = {
-  #  enable = true;
-  #  extraPackages = with pkgs; [
-  #    intel-media-driver
-  #    intel-vaapi-driver
-  #    libvdpau-va-gl
-  #  ];
-  #};
+  hardware.opengl.extraPackages = [ pkgs.intel-compute-runtime ];
   
   #environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; };
 
@@ -128,7 +117,6 @@
   
   environment.systemPackages = with pkgs; [
     neofetch
-    neovim
     kitty    
     xorg.xhost
     pavucontrol
