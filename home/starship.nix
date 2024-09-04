@@ -4,9 +4,9 @@
             flavour = "mocha";
         in
         {
-            enable = true;
+            enable = false;
             settings = {
-                format = '$all'
+                format = "$all";
 
                 palette = "catppuccin_${flavour}";
             } // builtins.fromTOML (builtins.readFile

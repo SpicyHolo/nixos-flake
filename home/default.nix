@@ -3,7 +3,6 @@
 {
   imports =
     [ 
-      ./discord.nix
       ./gnome.nix
       ./git.nix
       ./nvim
@@ -22,17 +21,20 @@
   home.packages = with pkgs; [
     anki-bin
     firefox
-    tree
-    neofetch
-    vscode
-    qbittorrent
-    mpv
     libsForQt5.okular
-    thunderbird
-    prismlauncher
     libreoffice-qt
+    mpv
+    neofetch
+    obsidian
+    prismlauncher
+    qbittorrent
     sxiv
-
+    thunderbird
+    tree
+    vesktop
+    vscode
+    feh
+    telegram-desktop
     # spotify
     spotify
     spicetify-cli
@@ -56,12 +58,12 @@
     # '';
 
     # Use starship with bash
-    ".bashrc" = {
-      text = ''
-        eval "$(starship init bash)"
-      '';
-    };
-
+  #  ".bashrc" = {
+  #    text = ''
+  #      eval "$(starship init bash)"
+  #    '';
+  #  };
+  # 
   };
 
   home.sessionVariables = {
@@ -74,7 +76,9 @@
   programs.home-manager.enable = true;
   
   # Enable starship
-
+  
+  # Steam
 
 }
+
 

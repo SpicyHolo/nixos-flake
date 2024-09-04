@@ -24,10 +24,13 @@
     };
   };
 
+  services.printing.enable = true;
+
   networking.hostName = "nixos-holo"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.nameservers = ["8.8.8.8" "8.8.4.4"];
 
   # Allow unfree
   nixpkgs.config.allowUnfree = true;
@@ -71,7 +74,6 @@
   i18n.inputMethod.fcitx5.addons = with pkgs; [
     fcitx5-mozc # JP fcitx5 engine?
     fcitx5-gtk # GTK support
-    #fcitx5-qt # Add if there's problem on Qt apps with input method
   ];
   
   # Pipewire audio mixer
@@ -120,6 +122,7 @@
     neofetch
     xorg.xhost
     pavucontrol
+    vesktop
   ];
   
   # Change shell to starship
@@ -156,6 +159,9 @@
 
   # Enable hyprland
   programs.hyprland.enable = true;
+  # Steam?
+  programs.steam.enable = true;
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

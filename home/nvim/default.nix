@@ -22,11 +22,17 @@
 	}
 
 	{
+		plugin = harpoon;
+		type = "lua";
+		config = toLuaFile ./plugins/harpoon.lua;
+  }
+	
+	{
 		plugin = catppuccin-nvim;
 		type = "lua";
 		config = toLuaFile ./plugins/catppuccin.lua;
-    	}
-	
+  }
+  
 	{
 		plugin = (nvim-treesitter.withPlugins (p: [
 			p.tree-sitter-nix
