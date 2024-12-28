@@ -6,19 +6,15 @@
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    spicetify-nix.url = "github:the-argus/spicetify-nix";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, spicetify-nix, ...}: 
+  outputs = inputs@{ self, nixpkgs, home-manager, ...}: 
   {
     nixosConfigurations = { 
       nixos-holo = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = { inherit spicetify-nix; };
         modules = [
           ./nixos # System module
-          ./modules/spotify.nix # Spicetify module
 
           # Home module
           home-manager.nixosModules.home-manager
