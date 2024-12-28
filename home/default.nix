@@ -41,6 +41,10 @@
         
     # mpvacious dep
     wl-clipboard
+
+    # LSP
+    lua-language-server 
+    nil
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

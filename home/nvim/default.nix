@@ -11,10 +11,11 @@
 	vimAlias = true;	
 	
 	extraPackages = with pkgs; [
-	    ripgrep
+	  ripgrep
 	];
 	plugins = with pkgs.vimPlugins; [
 	
+
 	{
 		plugin = telescope-nvim;
 		type = "lua";
@@ -38,7 +39,6 @@
 			p.tree-sitter-nix
 			p.tree-sitter-c
 			p.tree-sitter-cpp
-
 			p.tree-sitter-vim
 			p.tree-sitter-bash
 			p.tree-sitter-lua
@@ -50,24 +50,24 @@
 		config = toLuaFile ./plugins/treesitter.lua;
 	}
 
-	# For LSP
-	nvim-lspconfig
-	mason-nvim
-	mason-lspconfig-nvim
-	nvim-cmp
-	cmp-nvim-lsp
-	cmp-buffer
-	cmp-path
-	cmp_luasnip
-	luasnip
-	friendly-snippets
+  # LSP
+  nvim-lspconfig
+  nvim-cmp 
+  cmp-nvim-lsp
+  cmp_luasnip
+  luasnip
+  
+  # Eyecandy
+  indentLine
+
 	];
+
+
 	extraLuaConfig = ''
 		${builtins.readFile ./options.lua}
 		${builtins.readFile ./remap.lua}
 		${builtins.readFile ./lsp.lua}
 	'';
-
 
     };
 }

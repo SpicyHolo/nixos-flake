@@ -1,6 +1,6 @@
 {
   description = "NixOS flake <3";
-  
+
   inputs = { 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
@@ -13,6 +13,7 @@
     nixosConfigurations = { 
       nixos-holo = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+
         modules = [
           ./nixos # System module
 
@@ -30,3 +31,5 @@
     };
   };
 }
+
+

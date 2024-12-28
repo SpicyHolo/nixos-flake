@@ -51,8 +51,8 @@
   fonts.packages = with pkgs; [
     ipafont
     fira-code
-    nerdfonts.fira-code
-    nerdfonts.fira-mono
+    nerd-fonts.fira-code
+    nerd-fonts.fira-mono
   ];
 
   fonts.fontconfig.defaultFonts = {

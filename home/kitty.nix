@@ -1,7 +1,7 @@
 { config, pkgs, ...} : {
     programs.kitty = {
         enable = true;
-        theme = "Catppuccin-Mocha";
+        themeFile = "Catppuccin-Mocha";
         settings = {
             font_family = "FiraCode Nerd Font";
             font_size = 13;
