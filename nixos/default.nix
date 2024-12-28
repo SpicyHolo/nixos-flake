@@ -51,7 +51,8 @@
   fonts.packages = with pkgs; [
     ipafont
     fira-code
-    (nerdfonts.override { fonts = ["FiraCode" "FiraMono"]; })
+    nerdfonts.fira-code
+    nerdfonts.fira-mono
   ];
 
   fonts.fontconfig.defaultFonts = {
@@ -148,7 +149,7 @@
 
   # Add flakes support
   nix = {
-    package = pkgs.nixFlakes;
+    package = pkgs.nixVersions.stable;
     extraOptions = "experimental-features = nix-command flakes";
   };
 
