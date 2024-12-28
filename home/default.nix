@@ -1,14 +1,13 @@
-{ pkgs, ... }:
+{ pkgs, lib, inputs, ... }:
 
 {
   imports =
     [ 
-      #./gnome.nix
-      ./hyprland.nix
       ./git.nix
       ./nvim
       ./starship.nix
       ./kitty.nix
+      ./hyprland
     ];
 
   
@@ -22,8 +21,6 @@
   home.packages = with pkgs; [
     anki-bin
     firefox
-    libsForQt5.okular
-    libreoffice-qt
     mpv
     neofetch
     obsidian
@@ -45,6 +42,7 @@
     # LSP
     lua-language-server 
     nil
+    sl
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -73,7 +71,6 @@
   home.sessionVariables = {
     EDITOR = "nvim"; # Default text editor
     TERM = "kitty"; # Default terminal
-    GTK_THEME = "Catppuccin-Macchiato-Compact-Mauve-Dark"; # GTK Theme
   };
 
   # Let Home Manager install and manage itself.

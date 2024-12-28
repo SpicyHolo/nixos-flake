@@ -2,20 +2,14 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ lib, config, pkgs, ... }:
-let
-  hyprland = import ./modules/hyprland.nix { inherit config pkgs lib; };
-
-in
+{ config, pkgs, lib, ... }:
 {
-  imports =
-    [ 
-      hyprland
+  imports = [
+    ../modules/hyprland.nix
 
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
-
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Boot loader
   boot = {
@@ -165,7 +159,7 @@ in
   virtualisation.docker.enable = true;
 
   # Enable hyprland
-  programs.hyprland.enable = true;
+  #programs.hyprland.enable = true;
 
   # Steam?
   programs.steam.enable = true;

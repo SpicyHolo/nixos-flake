@@ -1,8 +1,9 @@
-{ config, pkgs, lib, inputs, ...}: {
-  programs.hyprland.enable = true;
+{ config, pkgs, lib, hyprland, ...}: 
 
-  # Use hyprwm/Hyprland package
-  programs.hyprland.package = inputs.hyprland.packages."${pkgs.system}".hyprland;
-
-
+{
+  programs.hyprland = {
+    enable = true;
+    package = pkgs.hyprland; #hyprland.packages."${pkgs.system}".hyprland;
+    xwayland.enable = true; 
+  };
 }
