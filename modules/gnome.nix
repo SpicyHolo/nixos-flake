@@ -11,7 +11,7 @@
     gnome-photos
     gnome-tour
     gnome-console
-  ]) ++ (with pkgs.gnome; [
+  ]) ++ (with pkgs; [
     cheese
     gnome-music
     gnome-terminal
@@ -25,8 +25,8 @@
   ]);
 
   environment.systemPackages = with pkgs; [
-    gnome.gnome-tweaks
-    gnome.gnome-themes-extra
+    gnome-tweaks
+    gnome-themes-extra
     gnomeExtensions.kimpanel
     ];
 }

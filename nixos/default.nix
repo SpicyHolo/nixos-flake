@@ -70,7 +70,9 @@
   };
 
   # IME (Japanese Input)
-  i18n.inputMethod.enabled = "fcitx5";
+  #i18n.inputMethod.enabled = "fcitx5";
+  i18n.inputMethod.type = "fcitx5";
+  i18n.inputMethod.enable = true;
   i18n.inputMethod.fcitx5.addons = with pkgs; [
     fcitx5-mozc # JP fcitx5 engine?
     fcitx5-gtk # GTK support
@@ -102,8 +104,8 @@
   ];
   
   # OpenGL / OpenCL support
-  hardware.opengl.enable = true;
-  hardware.opengl.extraPackages = [ pkgs.intel-compute-runtime ];
+  hardware.graphics.enable = true;
+  hardware.graphics.extraPackages = [ pkgs.intel-compute-runtime ];
   
   #environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; };
 
@@ -161,7 +163,15 @@
   programs.hyprland.enable = true;
   # Steam?
   programs.steam.enable = true;
-
+  
+  # Enable nix-ld
+  programs.nix-ld.enable = true;
+  
+  # support for running .appImage
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

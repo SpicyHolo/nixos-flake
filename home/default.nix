@@ -38,7 +38,7 @@
     # spotify
     spotify
     spicetify-cli
-    
+        
     # mpvacious dep
     wl-clipboard
   ];
@@ -75,10 +75,12 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
   
+
   # Enable starship
   
   # Steam
 
 }
+
 
 
