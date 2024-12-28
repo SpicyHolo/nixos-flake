@@ -1,9 +1,10 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports =
     [ 
-      ./gnome.nix
+      #./gnome.nix
+      ./hyprland.nix
       ./git.nix
       ./nvim
       ./starship.nix
@@ -40,7 +41,6 @@
     spicetify-cli
         
     # mpvacious dep
-    wl-clipboard
 
     # LSP
     lua-language-server 

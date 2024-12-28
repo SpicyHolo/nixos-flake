@@ -3,11 +3,15 @@
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
 { lib, config, pkgs, ... }:
+let
+  hyprland = import ./modules/hyprland.nix { inherit config pkgs lib; };
 
+in
 {
   imports =
     [ 
-      ../modules/gnome.nix
+      hyprland
+
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
@@ -162,6 +166,7 @@
 
   # Enable hyprland
   programs.hyprland.enable = true;
+
   # Steam?
   programs.steam.enable = true;
   
