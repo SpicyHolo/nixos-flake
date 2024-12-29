@@ -31,6 +31,7 @@
         };
 
         modules = [
+          sddm-sugar-candy-nix.nixosModules.default
           ./nixos # System module
 
           # Home module
