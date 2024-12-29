@@ -3,8 +3,9 @@
 
 {
   imports = [ 
-    ./waybar
+    #./waybar
     ./rofi
+    ./hyprbar
   ];
 
   services.hyprpaper = {
@@ -19,6 +20,10 @@
   # Fixes spotify <3
   home.sessionVariables.NIXOS_OZONE_WL = "1";
 
+  home.packages = with pkgs; [
+    pulseaudio # add pulsaudio cli
+  ];
+
   wayland.windowManager.hyprland = {
     enable = true;
     package = pkgs.hyprland;
@@ -32,7 +37,6 @@
       exec-once = [
         "hyprctl setcursor Qogir 24"
         "fcitx5 -d"
-        "waybar"
       ];
 
       general = {
@@ -107,7 +111,7 @@
       };
 
       ### Keybinds
-       bind = let
+      bind = let
         binding = mod: cmd: key: arg: "${mod}, ${key}, ${cmd}, ${arg}";
         mvfocus = binding "SUPER" "movefocus";
         ws = binding "SUPER" "workspace";
@@ -147,7 +151,17 @@
        ] 
        ++ (map (i: ws (toString i) (toString i)) arr)
        ++ (map (i: mvtows (toString i) (toString i)) arr);
+      bindle = [
+        ",XF86MonBrightnessUp,   exec, brightnessctl set +5%"
+        ",XF86MonBrightnessDown, exec, brightnessctl set  5%-"
+        ",XF86KbdBrightnessUp,   exec, brightnessctl -d asus::kbd_backlight set +1"
+        ",XF86KbdBrightnessDown, exec, brightnessctl -d asus::kbd_backlight set  1-"
+        ",XF86AudioRaiseVolume,  exec, pactl set-sink-volume @DEFAULT_SINK@ +5%"
+        ",XF86AudioLowerVolume,  exec, pactl set-sink-volume @DEFAULT_SINK@ -5%"
+      ];
     };
+
+
   };
 }
 
