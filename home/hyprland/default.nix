@@ -1,23 +1,23 @@
 
-{inputs, pkgs, lib,...}:
+{inputs, pkgs, config,lib,...}:
 
 {
   imports = [ 
-    #./waybar
+    ./waybar
     ./rofi
-    ./hyprpanel
+    #./hyprpanel
   ];
 
   services.hyprpaper = {
     enable = true;
     package = pkgs.hyprpaper;
     settings = {
-      preload = "/home/wallpapers/rainnight.jpg";
-      wallpaper = ", /home/wallpapers/rainnight.jpg";
+      preload = "${config.home.homeDirectory}/wallpapers/rainnight.jpg";
+      wallpaper = ", ${config.home.homeDirectory}/wallpapers/rainnight.jpg";
     };
   };
 
-  # Fixes spotify <3
+  # Fix electron apps
   home.sessionVariables.NIXOS_OZONE_WL = "1";
 
   home.packages = with pkgs; [
@@ -27,6 +27,7 @@
   wayland.windowManager.hyprland = {
     enable = true;
     package = pkgs.hyprland;
+    xwayland.enable = true;
     settings = {
        monitor = ", preferred, auto, 1.2";
         
