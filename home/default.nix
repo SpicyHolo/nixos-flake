@@ -1,4 +1,4 @@
-{ pkgs, lib, inputs, ... }:
+{ pkgs, lib, inputs, user, system, ... }:
 
 {
   imports =
@@ -10,9 +10,8 @@
       ./hyprland
     ];
 
-  
-  home.username = "holo";
-  home.homeDirectory = "/home/holo";
+  home.username = user;
+  home.homeDirectory = "/home/${user}";
   
   # don't change >:(
   home.stateVersion = "23.11";
@@ -42,11 +41,11 @@
     # LSP
     lua-language-server 
     nil
-    sl
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'hme.file'.
+
   home.file = {
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
@@ -75,13 +74,8 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-  
-
-  # Enable starship
-  
-  # Steam
-
 }
 
 
 
+  

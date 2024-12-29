@@ -15,7 +15,8 @@ let
 in {
   mainBar = {
     layer = "top";
-    modules-left = ["custom/nix" "clock" "hyprland/workspaces"];
+    height = 20;
+    modules-left = ["custom/nix" "hyprland/workspaces" "clock"];
     modules-center = ["custom/player" "cava"];
     modules-right = [
       "backlight"
@@ -39,6 +40,13 @@ in {
         "9" = "九";
         "10" = "十";
       };
+      "persistent-workspaces" = {
+        "1" = [];
+        "2" = [];
+        "3" = [];
+        "4" = [];
+        "5" = [];
+      };
       "sort-by-number" = true;
     };
 
@@ -49,7 +57,7 @@ in {
     };
 
     "custom/player" = {
-      format = "<span>{}</span>";
+      format = "Playing: <span>{}</span>";
       return-type = "json";
       max-length = 40;
       exec = "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F";
@@ -61,7 +69,8 @@ in {
       framerate = 60;
       bars = 16;
       bar_delimiter = 0;
-      waves = true;
+      hide_on_silence = true;
+      stereo = false;
       format-icons = [
         "<span>▁</span>"
         "<span>▂</span>"
@@ -75,13 +84,12 @@ in {
     };
 
     "clock" = {
-      format = "{:%a, %d/%m %H:%M} ";
+      format = "󰸗  {:%a %d/%m %H:%M} ";
       tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
     };
 
     "backlight" = {
-      format = "{icon} {percent}%";
-      format-icons = ["󰃞 " "󰃟 " "󰃠 "];
+      format = "󰛨  {percent}%";
     };
 
     "battery" = {
@@ -90,34 +98,33 @@ in {
         warning = "30";
         critical = "15";
       };
-      format = "{icon}{capacity}%";
-      tooltip-format = "{timeTo} {capacity}%";
-      format-charging = " 󰂄 {capacity}%";
-      format-plugged = "  ";
-      format-alt = "{time} {icon}";
-      format-icons = ["   " "   " "   " "   " "   "];
+      format = "{icon} {capacity}%";
+      tooltip-format = "{time} {capacity}%";
+      format-charging = "󰂄  {capacity}%";
+      format-plugged = " ";
+      format-icons = ["  " "  " "  " "  " "  "];
     };
 
     "network" = {
-      format-wifi = " 󰖩  {essid}";
-      format-ethernet = " 󰈀 ";
+      format-wifi = "󰤨  {essid}";
+      format-ethernet = "󰈀  Ethernet";
       format-linked = "{ifname} (No IP) 󰈀 ";
-      format-disconnected = " 󰖪  Disconnected";
+      format-disconnected = "󰤮  Disconnected";
       on-click = "foot -e nmtui";
       tooltip-format = "{essid} {signalStrength}%";
     };
 
     "pulseaudio" = {
-      format = "{icon}";
-      format-muted = " 󰖁 ";
+      format = "{icon} {volume}%";
+      format-muted = "󰖁  {volume}%";
       format-icons = {
-        default = ["  " "  " "  "];
+        default = [" " " " " "];
       };
       on-click = "pavucontrol";
     };
 
     "custom/powermenu" = {
-      format = "  ";
+      format = " ";
       on-click = "$HOME/.config/rofi/powermenu/powermenu.sh";
     };
     "custom/fcitx" = {

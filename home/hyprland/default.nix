@@ -1,11 +1,9 @@
 
-{inputs, pkgs, config,lib,...}:
-
-{
+{inputs, pkgs, config, lib, ...}: {
   imports = [ 
     ./waybar
     ./rofi
-    ./hyprpanel
+    ./sddm
   ];
 
   services.hyprpaper = {
@@ -22,14 +20,26 @@
 
   home.packages = with pkgs; [
     pulseaudio # add pulsaudio cli
+    cliphist
+    wl-clipboard
   ];
-
   wayland.windowManager.hyprland = {
     enable = true;
     package = pkgs.hyprland;
     xwayland.enable = true;
     settings = {
-       monitor = ", preferred, auto, 1.2";
+      env = [
+        "XDG_CURRENT_DESKTOP,Hyprland"
+        "XDG_SESSION_DESKTOP,Hyprland"
+        "XDG_SESSION_TYPE,wayland"
+        "GDK_BACKEND,wayland,x11"
+        "MOZ_ENABLE_WAYLAND,1"
+        "MOZ_DISABLE_RDD_SANDBOX,1"
+        "XCURSOR_SIZE,24"
+        "QT_QPA_PLATFORM,wayland"
+        "QT_QPA_PLATFORMTHEME,qt5ct"
+      ];
+      monitor = ", preferred, auto, 1.2";
         
       # Default apps
       "$browser" = "firefox";
@@ -38,6 +48,8 @@
       exec-once = [
         "hyprctl setcursor Qogir 24"
         "fcitx5 -d"
+        "waybar"
+        "wl-paste --watch cliphist store"
       ];
 
       general = {
@@ -65,21 +77,28 @@
 
 
       decoration = {
-          rounding = 6;
-          
-          blur = {
-              enabled = true;
-              xray = true;
-              special = false;
-              new_optimizations = true;
-              size = 4;
-              passes = 4;
-              brightness = 2;
-              noise = 0;
-              contrast = 2;
-              popups = true;
-              popups_ignorealpha = 0.6;
-          };
+        rounding = 6;
+        blur = {
+            enabled = true;
+            xray = true;
+            special = false;
+            new_optimizations = true;
+            size = 4;
+            passes = 4;
+            brightness = 2;
+            noise = 0;
+            contrast = 2;
+            popups = true;
+            popups_ignorealpha = 0.6;
+        };
+        shadow = {
+          enabled = false;
+          ignore_window = false;
+          range = 25;
+          render_power = 2;
+          color = "rgba(000000aa)";
+          color_inactive = "rgba(1000002a)";
+        };
       };
 
       animations = {

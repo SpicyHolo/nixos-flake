@@ -89,7 +89,6 @@
 };
 
   # Bluetooth support pipewire (future lua support)
-  
   services.pipewire.wireplumber.configPackages = [
 	(pkgs.writeTextDir "share/wireplumber/bluetooth.lua.d/51-bluez-config.lua" ''
 		bluez_monitor.properties = {
@@ -121,7 +120,6 @@
     neofetch
     xorg.xhost
     pavucontrol
-    vesktop
   ];
   
   # Change shell to starship
@@ -156,21 +154,9 @@
   # Enable Docker
   virtualisation.docker.enable = true;
 
-  # Enable hyprland
-  #programs.hyprland.enable = true;
-
-  # Steam?
-  programs.steam.enable = true;
-  
   # Enable nix-ld
   programs.nix-ld.enable = true;
   
-  # support for running .appImage
-  programs.appimage = {
-    enable = true;
-    binfmt = true;
-  };
-
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
