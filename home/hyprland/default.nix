@@ -3,7 +3,6 @@
   imports = [ 
     ./waybar
     ./rofi
-    ./sddm
   ];
 
   services.hyprpaper = {

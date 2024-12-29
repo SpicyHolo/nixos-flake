@@ -1,6 +1,6 @@
-{ pkgs, config, lib, ...}: {
+{ pkgs, config, lib, ... }: {
   services.displayManager.sddm = {
     enable = true;
-    waylend.enable = true;
+    wayland.enablbe = true;
   };
 }
