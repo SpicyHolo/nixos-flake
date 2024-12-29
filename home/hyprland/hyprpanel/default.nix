@@ -1,8 +1,8 @@
 # *.nix
-{ pkgs, config, lib, ... }:
+{ inputs, pkgs, config, lib, ... }:
+
 {
   programs.hyprpanel = {
-
     # Enable the module.
     # Default: false
     enable = true;
@@ -23,6 +23,8 @@
     # Default: false
     overwrite.enable = true;
 
+  
+  
     # Import a specific theme from './themes/*.json'.
     # Default: ""
     theme = "gruvbox_split";

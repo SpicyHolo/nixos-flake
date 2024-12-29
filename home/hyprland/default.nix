@@ -1,11 +1,11 @@
 
-{ pkgs, lib, hyprland-plugins, hyprland, ...}:
+{inputs, pkgs, lib,...}:
 
 {
   imports = [ 
     #./waybar
     ./rofi
-    ./hyprbar
+    ./hyprpanel
   ];
 
   services.hyprpaper = {
