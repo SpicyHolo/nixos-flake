@@ -5,7 +5,7 @@
   imports = [ 
     ./waybar
     ./rofi
-    #./hyprpanel
+    ./hyprpanel
   ];
 
   services.hyprpaper = {
@@ -41,11 +41,11 @@
       ];
 
       general = {
-        gaps_in = 5;
-        gaps_out = 5;
+        gaps_in = 12;
+        gaps_out = 20;
         border_size = 2;
-        "col.active_border" = "rgba(e5b9c6ff) rgba(c293a3ff) 45deg";
-        "col.inactive_border" = "0xff382D2E";
+        "col.active_border" = "rgba(3B294AFF)";
+        "col.inactive_border" = "rgba(31313600)";
         no_border_on_floating = false;
         layout = "dwindle";
       };
@@ -62,29 +62,25 @@
         swallow_regex = "^(kitty)$";
       };
 
+
+
       decoration = {
-        rounding = 0;
-        active_opacity = 1.0;
-        inactive_opacity = 1.0;
-        blur = {
-          enabled = true;
-          size = 6;
-          passes = 3;
-          new_optimizations = true;
-          xray = true;
-          ignore_opacity = true;
-        };
-        shadow = {
-          enabled = false;
-          ignore_window = true;
-          offset = "1 2";
-          range = 10;
-          render_power = 5;
-          color = "0x66404040";
-        };
+          rounding = 6;
+          
+          blur = {
+              enabled = true;
+              xray = true;
+              special = false;
+              new_optimizations = true;
+              size = 4;
+              passes = 4;
+              brightness = 2;
+              noise = 0;
+              contrast = 2;
+              popups = true;
+              popups_ignorealpha = 0.6;
+          };
       };
-
-
 
       animations = {
         enabled = true;

@@ -2,6 +2,8 @@
 { inputs, pkgs, config, lib, ... }:
 
 {
+  imports = [ inputs.hyprpanel.homeManagerModules.hyprpanel ];
+
   programs.hyprpanel = {
     # Enable the module.
     # Default: false
