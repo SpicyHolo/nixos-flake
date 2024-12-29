@@ -1,6 +1,12 @@
 
 { pkgs, lib, hyprland-plugins, hyprland, ...}:
 {
+
+  programs.rofi = {
+    enable = true;
+    package = pkgs.rofi;
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
     package = pkgs.hyprland;
@@ -11,6 +17,11 @@
       "$browser" = "firefox";
       "$terminal" = "kitty";
       
+      exec-once = [
+        "hyprctl setcursor Qogir 24"
+        "waybar"
+      ];
+
       general = {
         gaps_in = 5;
         gaps_out = 5;
@@ -19,7 +30,6 @@
         "col.inactive_border" = "0xff382D2E";
         no_border_on_floating = false;
         layout = "dwindle";
-        no_cursor_warps = true;
       };
 
       misc = {
@@ -38,27 +48,25 @@
         rounding = 0;
         active_opacity = 1.0;
         inactive_opacity = 1.0;
+        blur = {
+          enabled = true;
+          size = 6;
+          passes = 3;
+          new_optimizations = true;
+          xray = true;
+          ignore_opacity = true;
+        };
+        shadow = {
+          enabled = false;
+          ignore_window = true;
+          offset = "1 2";
+          range = 10;
+          render_power = 5;
+          color = "0x66404040";
+        };
       };
 
-      blur = {
-        enabled = true;
-        size = 6;
-        passes = 3;
-        new_optimizations = true;
-        xray = true;
-        ignore_opacity = true;
-      };
 
-      drop_shadow = false;
-      shadow_ignore_window = true;
-      shadowoffset = "1 2";
-      shadow_range = 10;
-      shadow_render_power = 5;
-      "col.shadow" = "0x66404040";
-      blurls = [
-        "waybar"
-        "lockscreen"
-      ];
 
       animations = {
         enabled = true;
@@ -81,8 +89,7 @@
       };
 
       dwindle = {
-        no_gaps_when_only = false;
-        pseudotitle = true;
+        pseudotile = true;
         preserve_split = true;
       };
 
@@ -94,18 +101,19 @@
         resizeactive = binding "SUPER CTRL" "resizeactive";
         mvactive = binding "SUPER ALT" "moveactive";
         mvtows = binding "SUPER SHIFT" "movetoworkspace";
-        arr [1 2 3 4 5 6 7];
+        arr = [1 2 3 4 5 6 7];
       in [
         # Apps shortcuts
         "SUPER, W, exec,  $browser"
         "SUPER, Q, exec,  $terminal"
 
         # Window Managment
-        "ALT, Tab,        focuscurrentorlast"
-        "ALT, W,          exit"
-        "SUPER, F,        togglefloating"
-        "SUPER, G,        fullscreen"
-        "SUPER, P,        togglesplit"
+        "ALT, Tab,          focuscurrentorlast"
+        "ALT, W,            killactive"
+        "CTRL ALT, delete,  exit"
+        "SUPER, F,          togglefloating"
+        "SUPER, G,          fullscreen"
+        "SUPER, P,          togglesplit"
 
         (mvfocus "k" "u")
         (mvfocus "j" "d")
@@ -113,6 +121,8 @@
         (mvfocus "h" "l")
         (ws "page_up" "e-1")
         (ws "page_down" "e+1")
+        (mvtows "page_up" "e-1")
+        (mvtows "page_down" "e+1")
         (resizeactive "k" "0 -20")
         (resizeactive "j" "0 20")
         (resizeactive "l" "20 0")
