@@ -1,209 +1,132 @@
-_: let
-  font = "RobotoMono Nerd Font";
-  fontsize = "12";
-  primary_accent = "cba6f7";
-  secondary_accent = "89b4fa";
-  tertiary_accent = "f5f5f5";
-  background = "11111B";
-  opacity = ".85";
-  cursor = "Numix-Cursor";
+_: 
+let
+  fcitxScript = ''
+    # Get the current input method from fcitx5-remote
+    current_input=$(fcitx5-remote)
+
+    if [ "$current_input" -eq 1 ]; then
+        echo "A"
+    elif [ "$current_input" -eq 2 ]; then
+        echo "あ"
+    else
+        echo "?"
+    fi
+  '';
 in {
   mainBar = {
-    position = "top";
     layer = "top";
-    height = 35;
-    margin-top = 0;
-    margin-bottom = 0;
-    margin-left = 0;
-    margin-right = 0;
-    modules-left = [
-      "custom/launcher"
-      "custom/playerlabel"
-      "custom/playerctl#backward"
-      "custom/playerctl#play"
-      "custom/playerctl#foward"
-    ];
-    modules-center = [
-      "cava#left"
-      "hyprland/workspaces"
-      "cava#right"
-    ];
+    modules-left = ["custom/nix" "clock" "hyprland/workspaces"];
+    modules-center = ["custom/player" "cava"];
     modules-right = [
-      "custom/notification"
-      "tray"
-      "battery"
-      "pulseaudio"
+      "backlight"
       "network"
-      "clock"
+      "pulseaudio"
+      "battery"
+      "custom/powermenu"
     ];
-    clock = {
-      format = "󰥔  {:%a, %d %b, %I:%M %p}";
-      tooltip = "true";
-      tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-      format-alt = "   {:%d/%m}";
-    };
+
     "hyprland/workspaces" = {
-      active-only = false;
-      all-outputs = false;
-      disable-scroll = false;
-      on-scroll-up = "hyprctl dispatch workspace e-1";
-      on-scroll-down = "hyprctl dispatch workspace e+1";
-      format = "{name}";
-      on-click = "activate";
-      format-icons = {
-        urgent = "";
-        active = "";
-        default = "";
-        sort-by-number = true;
-      };
-    };
-    "cava#left" = {
-      framerate = 60;
-      autosens = 0;
-      sensitivity = 5;
-      bars = 16;
-      lower_cutoff_freq = 50;
-      higher_cutoff_freq = 10000;
-      method = "pipewire";
-      source = "auto";
-      stereo = true;
-      reverse = false;
-      bar_delimiter = 0;
-      monstercat = false;
-      waves = false;
-      input_delay = 2;
-      format-icons = [
-        "<span foreground='#${primary_accent}'>▁</span>"
-        "<span foreground='#${primary_accent}'>▂</span>"
-        "<span foreground='#${primary_accent}'>▃</span>"
-        "<span foreground='#${primary_accent}'>▄</span>"
-        "<span foreground='#${secondary_accent}'>▅</span>"
-        "<span foreground='#${secondary_accent}'>▆</span>"
-        "<span foreground='#${secondary_accent}'>▇</span>"
-        "<span foreground='#${secondary_accent}'>█</span>"
-      ];
-    };
-    "cava#right" = {
-      framerate = 60;
-      autosens = 0;
-      sensitivity = 5;
-      bars = 16;
-      lower_cutoff_freq = 50;
-      higher_cutoff_freq = 10000;
-      method = "pipewire";
-      source = "auto";
-      stereo = true;
-      reverse = false;
-      bar_delimiter = 0;
-      monstercat = false;
-      waves = false;
-      input_delay = 2;
-      format-icons = [
-        "<span foreground='#${primary_accent}'>▁</span>"
-        "<span foreground='#${primary_accent}'>▂</span>"
-        "<span foreground='#${primary_accent}'>▃</span>"
-        "<span foreground='#${primary_accent}'>▄</span>"
-        "<span foreground='#${secondary_accent}'>▅</span>"
-        "<span foreground='#${secondary_accent}'>▆</span>"
-        "<span foreground='#${secondary_accent}'>▇</span>"
-        "<span foreground='#${secondary_accent}'>█</span>"
-      ];
-    };
-    "custom/playerctl#backward" = {
-      format = "󰙣 ";
-      on-click = "playerctl previous";
-      on-scroll-up = "playerctl volume .05+";
-      on-scroll-down = "playerctl volume .05-";
-    };
-    "custom/playerctl#play" = {
       format = "{icon}";
-      return-type = "json";
-      exec = "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F";
-      on-click = "playerctl play-pause";
-      on-scroll-up = "playerctl volume .05+";
-      on-scroll-down = "playerctl volume .05-";
       format-icons = {
-        Playing = "<span>󰏥 </span>";
-        Paused = "<span> </span>";
-        Stopped = "<span> </span>";
+        "1" = "一";
+        "2" = "二";
+        "3" = "三";
+        "4" = "四";
+        "5" = "五";
+        "6" = "六";
+        "7" = "七";
+        "8" = "八";
+        "9" = "九";
+        "10" = "十";
       };
+      "sort-by-number" = true;
     };
-    "custom/playerctl#foward" = {
-      format = "󰙡 ";
-      on-click = "playerctl next";
-      on-scroll-up = "playerctl volume .05+";
-      on-scroll-down = "playerctl volume .05-";
+
+    "custom/nix" = {
+      format = "󱄅 ";
+      tooltip = false;
+      on-click-release = "bemenu-run";
     };
-    "custom/playerlabel" = {
-      format = "<span>󰎈 {} 󰎈</span>";
+
+    "custom/player" = {
+      format = "<span>{}</span>";
       return-type = "json";
       max-length = 40;
       exec = "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F";
       on-click = "";
     };
-    battery = {
-      states = {
-        good = 95;
-        warning = 30;
-        critical = 15;
-      };
-      format = "{icon}  {capacity}%";
-      format-charging = "  {capacity}%";
-      format-plugged = " {capacity}% ";
-      format-alt = "{icon} {time}";
-      format-icons = ["" "" "" "" ""];
+
+
+    "cava" = {
+      framerate = 60;
+      bars = 16;
+      bar_delimiter = 0;
+      waves = true;
+      format-icons = [
+        "<span>▁</span>"
+        "<span>▂</span>"
+        "<span>▃</span>"
+        "<span>▄</span>"
+        "<span>▅</span>"
+        "<span>▆</span>"
+        "<span>▇</span>"
+        "<span>█</span>"
+      ];
     };
 
-    memory = {
-      format = "󰍛 {}%";
-      format-alt = "󰍛 {used}/{total} GiB";
-      interval = 5;
+    "clock" = {
+      format = "{:%a, %d/%m %H:%M} ";
+      tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
     };
-    cpu = {
-      format = "󰻠 {usage}%";
-      format-alt = "󰻠 {avg_frequency} GHz";
-      interval = 5;
+
+    "backlight" = {
+      format = "{icon} {percent}%";
+      format-icons = ["󰃞 " "󰃟 " "󰃠 "];
     };
-    network = {
-      format-wifi = "  {signalStrength}%";
-      format-ethernet = "󰈀 100% ";
-      tooltip-format = "Connected to {essid} {ifname} via {gwaddr}";
-      format-linked = "{ifname} (No IP)";
-      format-disconnected = "󰖪 0% ";
-    };
-    tray = {
-      icon-size = 20;
-      spacing = 8;
-    };
-    pulseaudio = {
-      format = "{icon} {volume}%";
-      format-muted = "󰝟";
-      format-icons = {
-        default = ["󰕿" "󰖀" "󰕾"];
+
+    "battery" = {
+      states = {
+        good = "95";
+        warning = "30";
+        critical = "15";
       };
-      # on-scroll-up= "bash ~/.scripts/volume up";
-      # on-scroll-down= "bash ~/.scripts/volume down";
-      scroll-step = 5;
+      format = "{icon}{capacity}%";
+      tooltip-format = "{timeTo} {capacity}%";
+      format-charging = " 󰂄 {capacity}%";
+      format-plugged = "  ";
+      format-alt = "{time} {icon}";
+      format-icons = ["   " "   " "   " "   " "   "];
+    };
+
+    "network" = {
+      format-wifi = " 󰖩  {essid}";
+      format-ethernet = " 󰈀 ";
+      format-linked = "{ifname} (No IP) 󰈀 ";
+      format-disconnected = " 󰖪  Disconnected";
+      on-click = "foot -e nmtui";
+      tooltip-format = "{essid} {signalStrength}%";
+    };
+
+    "pulseaudio" = {
+      format = "{icon}";
+      format-muted = " 󰖁 ";
+      format-icons = {
+        default = ["  " "  " "  "];
+      };
       on-click = "pavucontrol";
     };
-    "custom/randwall" = {
-      format = "󰏘";
-      # on-click= "bash $HOME/.config/hypr/randwall.sh";
-      # on-click-right= "bash $HOME/.config/hypr/wall.sh";
+
+    "custom/powermenu" = {
+      format = "  ";
+      on-click = "$HOME/.config/rofi/powermenu/powermenu.sh";
     };
-    "custom/launcher" = {
-      format = "";
-      # on-click= "bash $HOME/.config/rofi/launcher.sh";
-      # on-click-right= "bash $HOME/.config/rofi/run.sh";
-      tooltip = "false";
-    };
-    "custom/notification" = {
-      exec = "~/.config/waybar/scripts/notification.sh";
-      on-click = "dunstctl set-paused toggle";
-      on-click-right = "wallpaper";
-      return-type = "json";
-      max-length = 50;
-      format = "{}";
+    "custom/fcitx" = {
+      exec = "fcitx5-remote";
+      interval = 1;
+      format = "{output}";
+      tooltip = "Input Method";
     };
   };
 }
+
+

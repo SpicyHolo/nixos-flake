@@ -1,140 +1,166 @@
-_: let
-  font = "RobotoMono Nerd Font";
-  fontsize = "12";
-  primary_accent = "cba6f7";
-  secondary_accent = "89b4fa";
-  tertiary_accent = "f5f5f5";
-  background = "11111B";
-  opacity = ".85";
-  cursor = "Numix-Cursor";
+_: 
+let 
+  colors = {
+    base = "#1e1e2e";
+    mantle = "#181825";
+    crust = "#11111b";
+    red = "#FF6961";
+    orange = "#FFB347";
+    yellow = "#FDFD96";
+    green = "#77DD77";
+    cyan = "#AEC6CF";
+    blue = "#779ECB";
+    purple = "#CDB5E4";
+    rosewater = "#f5e0dc";
+  };
+  rainbow = {
+    red = "#FF6961";
+    orange = "#FFB347";
+    yellow = "#FDFD96";
+    green = "#77DD77";
+    cyan = "#AEC6CF";
+    blue = "#779ECB";
+    purple = "#CDB5E4";
+  };
+
 in ''
-  * {
-      border: none;
-      border-radius: 0px;
-      font-family: ${font};
-      font-size: 14px;
-      min-height: 0;
-  }
+* {
+  border: none;
+  border-radius: 0;
+  font-family: Nerd Font Hack;
+  font-size: 14px;
+  font-weight: bold;
+  min-height: 24px;
+}
 
-  window#waybar {
-      /* background: rgba(16, 18, 19, 0.8); */
-      background-color: rgba(0, 0, 0, 0.096);
-  }
 
-  #cava.left, #cava.right {
-      background: #${background};
-      margin: 5px;
-      padding: 8px 16px;
-      color: #${primary_accent};
-  }
-  #cava.left {
-      border-radius: 24px 10px 24px 10px;
-  }
-  #cava.right {
-      border-radius: 10px 24px 10px 24px;
-  }
-  #workspaces {
-      background: #${background};
-      margin: 5px 5px;
-      padding: 8px 5px;
-      border-radius: 16px;
-      color: #${primary_accent}
-  }
-  #workspaces button {
-      padding: 0px 5px;
-      margin: 0px 3px;
-      border-radius: 16px;
-      color: transparent;
-      background-color: #2f354a;
-      transition: all 0.3s ease-in-out;
-  }
 
-  #workspaces button.active {
-      background-color: #${secondary_accent};
-      color: #${background};
-      border-radius: 16px;
-      min-width: 50px;
-      background-size: 400% 400%;
-      transition: all 0.3s ease-in-out;
-  }
+#window {
+  margin-top: 0px;
+  padding: 0px 16px;
+  border-radius: 4px;
+  transition: none;
+  color:  ${colors.mantle};
+}
 
-  #workspaces button:hover {
-      background-color: #${tertiary_accent};
-      color: #${background};
-      border-radius: 16px;
-      min-width: 50px;
-      background-size: 400% 400%;
-  }
+window#waybar #window {
+  color: ${colors.mantle};
+}
 
-  #custom-notification, #tray, #pulseaudio, #network, #battery,
-  #custom-playerctl.backward, #custom-playerctl.play, #custom-playerctl.foward{
-      background: #${background};
-      font-weight: bold;
-      margin: 5px 0px;
-  }
-  #custom-notification, #tray, #pulseaudio, #network, #battery{
-      color: #${primary_accent};
-      border-radius: 10px 24px 10px 24px;
-      padding: 0 20px;
-      margin-left: 7px;
-  }
-  #clock {
-      color: #${tertiary_accent};
-      background-color: #${background};
-      border-radius: 0px 0px 0px 40px;
-      padding: 10px 10px 15px 25px;
-      margin-left: 7px;
-      font-weight: bold;
-      font-size: 16px;
-  }
-  #custom-launcher {
-      color: #${secondary_accent};
-      background-color: #${background};
-      border-radius: 0px 0px 40px 0px;
-      margin: 0px;
-      padding: 0px 35px 0px 15px;
-      font-size: 28px;
-  }
+window#waybar {
+  background: transparent;
+}
 
-  #custom-playerctl.backward, #custom-playerctl.play, #custom-playerctl.foward {
-      background: #${background};
-      font-size: 22px;
-  }
-  #custom-playerctl.backward:hover, #custom-playerctl.play:hover, #custom-playerctl.foward:hover{
-      color: #${tertiary_accent};
-  }
-  #custom-playerctl.backward {
-      color: #${primary_accent};
-      border-radius: 24px 0px 0px 10px;
-      padding-left: 16px;
-      margin-left: 7px;
-  }
-  #custom-playerctl.play {
-      color: #${secondary_accent};
-      padding: 0 5px;
-  }
-  #custom-playerctl.foward {
-      color: #${primary_accent};
-      border-radius: 0px 10px 24px 0px;
-      padding-right: 12px;
-      margin-right: 7px
-  }
-  #custom-playerlabel {
-      background: #${background};
-      color: #${tertiary_accent};
-      padding: 0 20px;
-      border-radius: 24px 10px 24px 10px;
-      margin: 5px 0;
-      font-weight: bold;
-  }
-  #window{
-      background: #${background};
-      padding-left: 15px;
-      padding-right: 15px;
-      border-radius: 16px;
-      margin-top: 5px;
-      margin-bottom: 5px;
-      font-weight: normal;
-      font-style: normal;
-  }
+#clock {
+  margin: 8px 0px 8px 8px;
+  padding: 0px 8px;
+	border-radius: 4px;
+	transition: none;
+	color: #f8f8f2;
+	background: #282a36;
+}
+
+#custom-nix {
+  margin: 4px 4px;
+  padding-left: 4px;
+	transition: none;
+	color: #f8f8f2;
+  font-size: 28px;
+}
+
+#workspaces {
+  margin: 8px 0px 8px 8px;
+	border-radius: 4px;
+	background: #282a36;
+	transition: none;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+#workspaces button {
+	transition: none;
+	color: #f8f8f2;
+	background: transparent;
+	font-size: 16px;
+}
+
+#workspaces button.active {
+	color: ${rainbow.red};
+}
+
+#custom-player {
+  margin: 8px 0px 8px 8px;
+  padding: 0px 16px;
+	border-radius: 24px;
+	transition: none;
+	color: ${colors.crust};
+  background-color: ${rainbow.purple};
+}
+
+#cava {
+  margin: 8px 0px 8px 8px;
+  padding: 0px 16px;
+	transition: none;
+	border-radius: 24px;
+	color: ${colors.crust};
+  background-color: ${rainbow.purple};
+}
+
+#backlight {
+  margin: 8px 4px 8px 8px;
+  padding-right: 8px;
+  padding-left: 6px;
+  border-radius: 4px;
+  transition: none;
+	color: ${colors.crust};
+  background: ${rainbow.red};
+}
+
+#network {
+  margin: 8px 4px 8px 8px;
+  padding-right: 8px;
+  padding-left: 4px;
+	border-radius: 4px;
+	transition: none;
+	color: ${colors.crust};
+	background: ${rainbow.green};
+}
+
+#pulseaudio {
+  margin: 8px 4px 8px 8px;
+  padding-right: 4px;
+  padding-left: 2px;
+	border-radius: 50%;
+	transition: none;
+	color: ${colors.crust};
+	background: ${rainbow.blue};
+}
+
+#battery {
+  margin: 8px 4px 8px 8px;
+  padding-right: 8px;
+  padding-left: 4px;
+	border-radius: 28px;
+	transition: none;
+	color: ${colors.crust};
+	background: ${rainbow.purple};
+}
+
+
+#custom-powermenu {
+  margin: 4px 4px;
+  padding-right: 4px;
+	transition: none;
+	color: #f8f8f2;
+  font-size: 24px;
+
+}
+
+#custom-fcitx {
+  margin: 4px 4px;
+	transition: none;
+	color: #f8f8f2;
+  font-size: 24px;
+}
 ''
+

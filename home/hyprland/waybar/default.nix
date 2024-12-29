@@ -4,9 +4,14 @@ let
   waybar_style = import ./style.nix {inherit (config) colorscheme; };
 in {
   home.packages = with pkgs; [
-    cava
     playerctl
+    brightnessctl
+    fcitx5
   ];
+
+  programs.cava = {
+    enable = true;
+  };
 
   programs.waybar = {
     enable = true;

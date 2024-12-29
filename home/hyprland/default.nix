@@ -1,11 +1,23 @@
 
 { pkgs, lib, hyprland-plugins, hyprland, ...}:
-{
 
-  programs.rofi = {
+{
+  imports = [ 
+    ./waybar
+    ./rofi
+  ];
+
+  services.hyprpaper = {
     enable = true;
-    package = pkgs.rofi;
+    package = pkgs.hyprpaper;
+    settings = {
+      preload = "/home/wallpapers/rainnight.jpg";
+      wallpaper = ", /home/wallpapers/rainnight.jpg";
+    };
   };
+
+  # Fixes spotify <3
+  home.sessionVariables.NIXOS_OZONE_WL = "1";
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -19,6 +31,7 @@
       
       exec-once = [
         "hyprctl setcursor Qogir 24"
+        "fcitx5 -d"
         "waybar"
       ];
 
