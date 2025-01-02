@@ -30,12 +30,13 @@
     tree
     vesktop
     vscode
+    libsForQt5.okular
     feh
     telegram-desktop
     # spotify
     spotify
     spicetify-cli
-        
+    unzip     
     # mpvacious dep
 
     # LSP

@@ -1,7 +1,8 @@
 { pkgs, config, lib, ... }: {
   services.displayManager.sddm = {
     enable = true;
-    wayland.enable = true;    
+    wayland.enable = true;
+
     sugarCandyNix = {
       enable = true; # This set SDDM's theme to "sddm-sugar-candy-nix".
       settings = {
@@ -9,7 +10,7 @@
         ScreenWidth = 1920;
         ScreenHeight = 1080;
         FormPosition = "center";
-        HaveFormBackground = true;
+        HaveFormBackground = false;
         FullBlur = true;
         ForceHideCompletePassword = true;
         ForceLastUser = true;

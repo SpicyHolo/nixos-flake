@@ -100,6 +100,13 @@
 		} '')
   ];
   
+  # Bluetooth
+  hardware.bluetooth.enable = true;
+
+  # Bluetooth manager
+  services.blueman.enable = true;
+  services.dbus.enable = true;
+  
   # OpenGL / OpenCL support
   hardware.graphics.enable = true;
   hardware.graphics.extraPackages = [ pkgs.intel-compute-runtime ];

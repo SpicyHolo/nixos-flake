@@ -3,8 +3,10 @@
   imports = [ 
     ./waybar
     ./rofi
+    ./yazi
   ];
-
+  
+  # Services
   services.hyprpaper = {
     enable = true;
     package = pkgs.hyprpaper;
@@ -13,14 +15,17 @@
       wallpaper = ", ${config.home.homeDirectory}/wallpapers/rainnight.jpg";
     };
   };
+  
 
   # Fix electron apps
   home.sessionVariables.NIXOS_OZONE_WL = "1";
+
 
   home.packages = with pkgs; [
     pulseaudio # add pulsaudio cli
     cliphist
     wl-clipboard
+    yazi
   ];
   wayland.windowManager.hyprland = {
     enable = true;
@@ -38,17 +43,39 @@
         "QT_QPA_PLATFORM,wayland"
         "QT_QPA_PLATFORMTHEME,qt5ct"
       ];
-      monitor = ", preferred, auto, 1.2";
-        
+
+      monitor = [
+        "e-DP1, preferred, auto, 1.2"
+        "DP-2, preferred, auto, 1"
+        "HDMI-A-1, preferred, auto, 1"
+      ];
+
+      workspace = [
+        "1, monitor:DP-2"
+        "2, monitor:DP-2"
+        "3, monitor:HDMI-A-1"
+        "4, monitor:HDMI-A-1"
+        "5, monitor:HDMI-A-1"
+      ];
+      
+      windowrule = [
+        "workspace 3, $browser"
+        "workspace 4, vesktop"
+        "workspace 5, Spotify"
+      ];
+
       # Default apps
       "$browser" = "firefox";
       "$terminal" = "kitty";
+      "$filebrowser" = "kitty -e yazi";
+      "$applauncher" = "rofi -show drun";
       
       exec-once = [
         "hyprctl setcursor Qogir 24"
         "fcitx5 -d"
         "waybar"
         "wl-paste --watch cliphist store"
+        "$terminal"
       ];
 
       general = {
@@ -136,9 +163,11 @@
         arr = [1 2 3 4 5 6 7];
       in [
         # Apps shortcuts
-        "SUPER, W, exec,  $browser"
         "SUPER, Q, exec,  $terminal"
-
+        "SUPER, W, exec,  $browser"
+        "SUPER, E, exec,  $filebrowser"
+        "SUPER, R, exec,  $applauncher"
+  
         # Window Managment
         "ALT, Tab,          focuscurrentorlast"
         "ALT, W,            killactive"
@@ -174,9 +203,12 @@
         ",XF86AudioRaiseVolume,  exec, pactl set-sink-volume @DEFAULT_SINK@ +5%"
         ",XF86AudioLowerVolume,  exec, pactl set-sink-volume @DEFAULT_SINK@ -5%"
       ];
+
+      bindl = [
+        ", switch:off:Lid Switch,exec,hyprctl keyword monitor 'eDP-1, 2560x1440, 0x0, 1'"
+        ", switch:on:Lid Switch,exec,hyprctl keyword monitor 'eDP-1, disable'"
+      ];
     };
-
-
   };
 }
 
