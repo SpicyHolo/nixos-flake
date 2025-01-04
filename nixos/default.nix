@@ -7,6 +7,7 @@
   imports = [
     ../modules/hyprland.nix
     ../modules/sddm.nix
+    ../modules/hyprlock.nix
 
     # Include the results of the hardware scan.
     ./hardware-configuration.nix

@@ -1,20 +1,5 @@
-{ config, pkgs, lib } :
-let
-  hyprlock-blur = pkgs.writeShellScriptBing "hyprlock-blur" ''
-    ${pkgs.hyprshot}/bin/hyprhsot -m DP-1 -m output -o /tmp/screenshot1.png" &
-    ${pkgs.hyprshot}/bin/hyprhsot -m HDMI-A-1 -m output -o DP-1 -l 0 /tmp/screenshot2.png" &
-    wait &&
-    hyprlock
-  '';
-in {
-  security.pam.services.hyprlock = {};
-  environment.systemPackages = [ hyprlock-blur ];
-
-  home.hyprland.settings = {
-    bind = [
-    ];
-  };
-
+{ pkgs, config, lib, ...}:
+{
   programs.hyprlock = {
     enable = true;
     settings = {
@@ -66,7 +51,7 @@ in {
 
       image = {
         monitor = "DP-1";
-        path = "${config.home.homeDirectory}/Pictures/profile.png";
+        path = "${config.home.homeDirectory}/Assets/profile.png";
 
         position = "0, 50";
         halign = "center";
