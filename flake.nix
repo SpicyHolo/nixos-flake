@@ -15,9 +15,16 @@
       url = "gitlab:Zhaith-Izaliel/sddm-sugar-candy-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Catppuccin yazi theme
+    catppuccin = {
+      url = "github:catppuccin/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
-  
-  outputs = inputs@{ self, nixpkgs, home-manager, sddm-sugar-candy-nix, ...}: 
+    
+
+  outputs = inputs@{ self, nixpkgs, home-manager, sddm-sugar-candy-nix, catppuccin,...}: 
   let 
     system = "x86_64-linux";
     user = "holo";
@@ -45,7 +52,12 @@
               inherit system;
               inherit user;
             };
-            home-manager.users.${user} = import ./home;
+            home-manager.users.${user} = {
+              imports = [
+                ./home
+                catppuccin.homeManagerModules.catppuccin
+              ];
+            };
           }
         ];
       };

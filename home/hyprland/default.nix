@@ -6,6 +6,9 @@
     ./yazi
   ];
   
+  # Set catppuccin flavour
+  catppuccin.flavor = "mocha";
+
   # Services
   services.hyprpaper = {
     enable = true;
@@ -71,11 +74,9 @@
       "$applauncher" = "rofi -show drun";
       
       exec-once = [
-        "hyprctl setcursor Qogir 24"
-        "fcitx5 -d"
         "waybar"
         "wl-paste --watch cliphist store"
-        "$terminal"
+        "fcitx5 -d"
       ];
 
       general = {
@@ -84,8 +85,7 @@
         border_size = 2;
         "col.active_border" = "rgba(3B294AFF)";
         "col.inactive_border" = "rgba(31313600)";
-        no_border_on_floating = false;
-        layout = "dwindle";
+        no_border_on_floating = false; layout = "dwindle";
       };
 
       misc = {
