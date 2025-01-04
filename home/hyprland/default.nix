@@ -1,9 +1,18 @@
 
-{inputs, pkgs, config, lib, ...}: {
+{inputs, pkgs, config, lib, ...}: 
+let
+  cfgDir = "${config.home.homeDirectory}/.config";
+
+  rofi-launcher = {
+    type = "type-2";
+    style = "style-2";
+  };
+in { 
   imports = [ 
     ./waybar
     ./rofi
     ./yazi
+    ./hyprlock
   ];
   
   # Set catppuccin flavour
@@ -29,6 +38,8 @@
     cliphist
     wl-clipboard
     yazi
+    papirus-icon-theme
+    hyprshot
   ];
   wayland.windowManager.hyprland = {
     enable = true;
@@ -71,7 +82,7 @@
       "$browser" = "firefox";
       "$terminal" = "kitty";
       "$filebrowser" = "kitty -e yazi";
-      "$applauncher" = "rofi -show drun";
+      "$applauncher" = "rofi -theme '${cfgDir}/rofi/launchers/${rofi-launcher.type}/${rofi-launcher.style}.rasi' -show drun";
       
       exec-once = [
         "waybar"
@@ -167,14 +178,24 @@
         "SUPER, W, exec,  $browser"
         "SUPER, E, exec,  $filebrowser"
         "SUPER, R, exec,  $applauncher"
+        "SUPER, V, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
   
         # Window Managment
         "ALT, Tab,          focuscurrentorlast"
-        "ALT, W,            killactive"
+        "ALT, Q,            killactive"
+        "ALT, F4,           killactive"
         "CTRL ALT, delete,  exit"
         "SUPER, F,          togglefloating"
         "SUPER, G,          fullscreen"
         "SUPER, P,          togglesplit"
+
+        # Screenshot
+        "SUPER, PRINT, exec, hyprshot -m window"
+        ", PRINT, exec, hyprshot -m output"
+        "SUPER SHIFT, PRINT, exec, hyprshot -m region"
+        
+        # Hyprlock
+        "SUPER, L, exec, hyprlock-blur"
 
         (mvfocus "k" "u")
         (mvfocus "j" "d")

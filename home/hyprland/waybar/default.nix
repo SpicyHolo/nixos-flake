@@ -6,7 +6,6 @@ in {
   home.packages = with pkgs; [
     playerctl
     brightnessctl
-    fcitx5
   ];
 
   programs.cava = {

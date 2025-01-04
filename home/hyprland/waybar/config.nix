@@ -72,7 +72,7 @@ in {
       hide_on_silence = true;
       stereo = false;
       format-icons = [
-        "<span>▁</span>"
+        "<span>▁</span>" 
         "<span>▂</span>"
         "<span>▃</span>"
         "<span>▄</span>"
@@ -84,8 +84,9 @@ in {
     };
 
     "clock" = {
-      format = "󰸗  {:%a %d/%m %H:%M} ";
+      format = "󰸗  {:%A %d日%m月 %I:%M %p}";
       tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+      locale = "ja_JP.UTF-8";
     };
 
     "backlight" = {
@@ -125,7 +126,7 @@ in {
 
     "custom/powermenu" = {
       format = " ";
-      on-click = "$HOME/.config/rofi/powermenu/powermenu.sh";
+      on-click = "rofi -show power-menu -modi power-menu:rofi-power-menu";
     };
     "custom/fcitx" = {
       exec = "fcitx5-remote";

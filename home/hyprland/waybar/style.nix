@@ -21,7 +21,7 @@ in ''
   border: none;
   padding: 0;
   margin: 0;
-  font-family: Nerd Font Hack;
+  font-family: "FiraMono Nerd Font", monospace;
   font-size: 14px;
   font-weight: bold;
   min-height: 0;

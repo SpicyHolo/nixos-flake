@@ -25,11 +25,11 @@
 
   services.printing.enable = true;
 
-  networking.hostName = "nixos-holo"; # Define your hostname.
-  # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
-  networking.nameservers = ["8.8.8.8" "8.8.4.4"];
+  networking = {
+    hostName = "nixos-holo"; # Define your hostname.
+    networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+    nameservers = ["8.8.8.8" "8.8.4.4"];
+  };
 
   # Allow unfree
   nixpkgs.config.allowUnfree = true;
@@ -42,16 +42,35 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings = { LC_TIME = "ja_JP.UTF-8"; };
+    
+    # Japanese input
+    inputMethod = {
+      type = "fcitx5";
+      enable = true;
+      fcitx5.waylandFrontend = true;
+      fcitx5.addons = with pkgs; [
+        fcitx5-mozc
+        fcitx5-gtk
+        fcitx5-nord # Theme
+      ];
+    };
+  };
 
-  # Japanese language support
-  
   # Fonts, DejaVu for english, IPA for Japanese
   fonts.packages = with pkgs; [
     ipafont
     fira-code
+    fira-mono
     nerd-fonts.fira-code
     nerd-fonts.fira-mono
+    jetbrains-mono
+    nerd-fonts.jetbrains-mono
+    icomoon-feather
+    iosevka
+    nerd-fonts.iosevka
   ];
 
   fonts.fontconfig.defaultFonts = {
@@ -69,14 +88,6 @@
     ];
   };
 
-  # IME (Japanese Input)
-  #i18n.inputMethod.enabled = "fcitx5";
-  i18n.inputMethod.type = "fcitx5";
-  i18n.inputMethod.enable = true;
-  i18n.inputMethod.fcitx5.addons = with pkgs; [
-    fcitx5-mozc # JP fcitx5 engine?
-    fcitx5-gtk # GTK support
-  ];
   
   # Pipewire audio mixer
   security.rtkit.enable = true;
@@ -85,8 +96,6 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
 };
 
   # Bluetooth support pipewire (future lua support)
@@ -184,24 +193,7 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  # This option defines the first version of NixOS you have installed on this particular machine,
-  # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
-  #
-  # Most users should NEVER change this value after the initial install, for any reason,
-  # even if you've upgraded your system to a new NixOS release.
-  #
-  # This value does NOT affect the Nixpkgs version your packages and OS are pulled from,
-  # so changing it will NOT upgrade your system.
-  #
-  # This value being lower than the current NixOS release does NOT mean your system is
-  # out of date, out of support, or vulnerable.
-  #
-  # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
-  # and migrated your data accordingly.
-  #
-  # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "23.11"; # Did you read the comment?
-
 }
 
 
