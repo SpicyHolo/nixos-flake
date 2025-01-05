@@ -1,8 +1,8 @@
 { config, pkgs, lib, ...}: 
 let
   hyprlock-blur = pkgs.writeShellScriptBin "hyprlock-blur" ''
-    ${pkgs.hyprshot}/bin/hyprhsot -m DP-1 -m output -o /tmp/screenshot1.png" &
-    ${pkgs.hyprshot}/bin/hyprhsot -m HDMI-A-1 -m output -o DP-1 -l 0 /tmp/screenshot2.png" &
+    ${pkgs.hyprshot}/bin/hyprshot -m DP-1 -m output -o /tmp -f screenshot1.png &
+    ${pkgs.hyprshot}/bin/hyprshot -m HDMI-A-1 -m output -o /tmp -f screenshot2.png &
     wait &&
     hyprlock
   '';

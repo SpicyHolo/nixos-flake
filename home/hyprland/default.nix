@@ -59,14 +59,14 @@ in {
       ];
 
       monitor = [
-        "e-DP1, preferred, auto, 1.2"
+        "eDP-1, preferred, auto, 1.2"
         "DP-2, preferred, auto, 1"
         "HDMI-A-1, preferred, auto, 1"
       ];
 
       workspace = [
-        "1, monitor:DP-2"
-        "2, monitor:DP-2"
+        "1, monitor:DP-1"
+        "2, monitor:DP-1"
         "3, monitor:HDMI-A-1"
         "4, monitor:HDMI-A-1"
         "5, monitor:HDMI-A-1"
