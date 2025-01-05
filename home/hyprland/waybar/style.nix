@@ -43,6 +43,7 @@ window#waybar {
 #custom-powermenu {
   font-size: 20px;
 }
+
 #workspaces button {
 	font-size: 20px;
   padding: 0px 6px;
@@ -50,11 +51,7 @@ window#waybar {
 }
 
 #workspaces button.active {
-	color: ${colors.red};
-}
-
-#workspaces, #clock, #custom-player, #cava {
-	background: ${colors.crust-transp};
+	color: ${colors.purple};
 }
 
 #custom-nix, 
@@ -72,12 +69,9 @@ window#waybar {
   margin: 0px 8px;
   margin-top: 8px;
   padding: 0px 8px;
+	background: ${colors.crust-transp};
 }
 
-.modules-right {
-  color: ${colors.crust};  
-  padding-right: 8px;
-}
 
 .modules-left {
   color: white;
@@ -88,19 +82,9 @@ window#waybar {
   color: white;
 }
 
-#backlight {
-  background: ${colors.red};
+.modules-right {
+  color: white;
+  padding-right: 8px;
 }
 
-#network {
-	background: ${colors.green};
-}
-
-#pulseaudio {
-	background: ${colors.blue};
-}
-
-#battery {
-	background: ${colors.purple};
-}
 ''
