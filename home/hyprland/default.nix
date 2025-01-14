@@ -13,6 +13,7 @@ in {
     ./rofi
     ./yazi
     ./hyprlock
+    ./dunst
   ];
   
   # Set catppuccin flavour
@@ -44,7 +45,10 @@ in {
   wayland.windowManager.hyprland = {
     enable = true;
     package = pkgs.hyprland;
-    xwayland.enable = true;
+    xwayland = {
+      enable = true;
+    };
+
     settings = {
       env = [
         "XDG_CURRENT_DESKTOP,Hyprland"
@@ -56,10 +60,11 @@ in {
         "XCURSOR_SIZE,24"
         "QT_QPA_PLATFORM,wayland"
         "QT_QPA_PLATFORMTHEME,qt5ct"
+        "GDK_SCALE,2"
       ];
 
       monitor = [
-        "eDP-1, preferred, auto, 1.2"
+        "eDP-1, 1920x1080@60, auto, 1.25"
         "DP-2, preferred, auto, 1"
         "HDMI-A-1, preferred, auto, 1"
       ];
@@ -226,8 +231,8 @@ in {
       ];
 
       bindl = [
-        ", switch:off:Lid Switch,exec,hyprctl keyword monitor 'eDP-1, 2560x1440, 0x0, 1'"
-        ", switch:on:Lid Switch,exec,hyprctl keyword monitor 'eDP-1, disable'"
+        ", switch:off:Lid Switch,exec,hyprctl keyword monitor 'eDP-1, 1920x1080, 0x0, 1.25'"
+        ", switch:on:Lid Switch,exec,hyprctl keyword monitor 'eDP-1, disable' & waybar"
       ];
     };
   };
