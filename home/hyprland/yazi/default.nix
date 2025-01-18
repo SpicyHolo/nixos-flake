@@ -204,7 +204,7 @@
           { run = "exiftool \"$1\"; echo \"Press enter to exit\"; read _"; block = true; desc = "Show EXIF"; for = "unix"; }
         ];
         extract = [
-          { run = "ya pub extract --list \"$@\""; desc = "Extract here"; for = "unix"; }
+          { run = "unzip \"$1\" -d \"$\{0%.*\}\""; desc = "Extract ZIP file here"; for = "linux"; }
         ];
         play = [
           { run = "mpv --force-window \"$@\""; orphan = true; for = "unix"; }
@@ -222,6 +222,7 @@
         { mime = "application/{json,ndjson}"; use = [ "edit" "reveal" ]; }
         { mime = "*/javascript"; use = [ "edit" "reveal" ]; }
         { mime = "inode/empty"; use = [ "edit" "reveal" ]; }
+        { name = "*.zip"; use = [ "extract" ]; }
         { name = "*"; use = [ "open" "reveal" ]; }
       ];
 

@@ -8,6 +8,7 @@
       ./starship.nix
       ./kitty.nix
       ./hyprland
+      ./scripts
     ];
 
   home.username = user;

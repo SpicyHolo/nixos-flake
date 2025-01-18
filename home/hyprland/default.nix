@@ -60,7 +60,6 @@ in {
         "XCURSOR_SIZE,24"
         "QT_QPA_PLATFORM,wayland"
         "QT_QPA_PLATFORMTHEME,qt5ct"
-        "GDK_SCALE,2"
       ];
 
       monitor = [
@@ -195,9 +194,9 @@ in {
         "SUPER, P,          togglesplit"
 
         # Screenshot
-        "SUPER, PRINT, exec, hyprshot -m window"
-        ", PRINT, exec, hyprshot -m output"
-        "SUPER SHIFT, PRINT, exec, hyprshot -m region"
+        "SUPER, PRINT, exec, hyprshot --silent -m window"
+        ", PRINT, exec, hyprshot --silent -m output"
+        "SUPER SHIFT, PRINT, exec, hyprshot --silent -m region"
         
         # Hyprlock
         "SUPER, L, exec, hyprlock-blur"

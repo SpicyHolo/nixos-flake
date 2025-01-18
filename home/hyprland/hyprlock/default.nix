@@ -22,6 +22,14 @@
           blur_size = 7;
           noise = 1.17e-2;
         }
+        {
+          monitor = "eDP-1";
+          path = "/tmp/screenshot0.png";
+
+          blur_passes = 2; # 0 disables blurring
+          blur_size = 7;
+          noise = 1.17e-2;
+        }
       ];
 
       label = [
@@ -35,6 +43,7 @@
           halign = "center";
           valign = "center";
         }
+
         {
 
           monitor = "DP-1";
