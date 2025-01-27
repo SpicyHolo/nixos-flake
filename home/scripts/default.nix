@@ -39,7 +39,11 @@ let
   '';
 in
 {
-  home.packages = with pkgs; [
+  imports = [ 
+    ./dunst
+  ];
+  
+  home.packages = [
     renameImagesScript
   ];
 }
