@@ -138,6 +138,7 @@
     neofetch
     xorg.xhost
     pavucontrol
+    ntfs3g
   ];
   
   # Change shell to starship

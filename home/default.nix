@@ -30,7 +30,6 @@
     thunderbird
     tree
     vesktop
-    vscode
     libsForQt5.okular
     feh
     telegram-desktop
@@ -38,6 +37,8 @@
     spotify
     spicetify-cli
     unzip     
+    chromium
+    code-cursor
     # mpvacious dep
 
     # LSP

@@ -12,6 +12,8 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
+  boot.supportedFilesystems = [ "ntfs" ];
+
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/b2946450-3460-4aa1-a7f2-e2a179bb6342";
@@ -22,6 +24,11 @@
     { device = "/dev/disk/by-uuid/C393-1118";
       fsType = "vfat";
     };
+  
+#  fileSystems."/mnt/ntfs" = 
+#    { device = "/dev/sda1";
+#      fsType = "ntfs-3g";
+#    };
 
   swapDevices =
     [ { device = "/dev/disk/by-uuid/bde84da3-0ec4-401e-97d6-4e9222eb8f67"; }
