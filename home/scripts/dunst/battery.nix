@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  dunstifyVolume = pkgs.writeShellScriptBin "dunstify-volume" ''
+  dunstifyBattery = pkgs.writeShellScriptBin "dunstify-battery" ''
     function get_volume {
       pactl get-sink-volume @DEFAULT_SINK@ | grep -o '[0-9]\+%' | head -1 | tr -d '%'
     }
@@ -27,7 +27,7 @@ let
               ICON=" " # High volume icon
           fi
       fi
-      dunstify -r 101 -u low -t 1000 "$ICON $VOLUME $BAR"
+      dunstify -u low -t 1000 "$ICON $VOLUME $BAR"
     }
 
     send_notification
@@ -35,7 +35,7 @@ let
 in
 {
   home.packages = [
-    dunstifyVolume
+    dunstifyBattery
   ];
 }
 

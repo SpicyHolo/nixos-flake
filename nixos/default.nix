@@ -89,7 +89,9 @@
     ];
   };
 
-  
+  # Battery info
+  services.upower.enable = true;
+
   # Pipewire audio mixer
   security.rtkit.enable = true;
   services.pipewire = {
@@ -139,6 +141,7 @@
     xorg.xhost
     pavucontrol
     ntfs3g
+    upower
   ];
   
   # Change shell to starship

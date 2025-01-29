@@ -1,4 +1,6 @@
 { pkgs, config, lib, ...}:
+let main = "eDP-1";
+in
 {
   programs.hyprlock = {
     enable = true;
@@ -34,7 +36,7 @@
 
       label = [
         {
-          monitor = "DP-1";
+          monitor = main;
           text = "$TIME";
           color = "rgba(242, 243, 244, 0.75)";
           font_size = 95;
@@ -46,7 +48,7 @@
 
         {
 
-          monitor = "DP-1";
+          monitor = main;
           text = ''cmd[update:1000] echo $(date +"%A, %B %d")'';
           color = "rgba(242, 243, 244, 0.75)";
           font_size = 22;
@@ -59,7 +61,7 @@
       ];
 
       image = {
-        monitor = "DP-1";
+        monitor = main;
         path = "${config.home.homeDirectory}/Assets/profile.png";
 
         position = "0, 50";
@@ -68,7 +70,7 @@
       };
 
       input-field = {
-        monitor = "DP-1";
+        monitor = main;
         size = "200,50";
         outline_thickness = 2;
         dots_size = 0.2; # Scale of input-field height, 0.2 - 0.8

@@ -19,6 +19,7 @@
 
   # Install packages for user
   home.packages = with pkgs; [
+    qgis
     anki-bin
     firefox
     mpv
