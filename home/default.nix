@@ -19,13 +19,10 @@
 
   # Install packages for user
   home.packages = with pkgs; [
-    qgis
-    anki-bin
     firefox
     mpv
     neofetch
     obsidian
-    prismlauncher
     qbittorrent
     sxiv
     thunderbird
@@ -34,13 +31,11 @@
     libsForQt5.okular
     feh
     telegram-desktop
-    # spotify
     spotify
     spicetify-cli
     unzip     
-    chromium
     code-cursor
-    # mpvacious dep
+    zoom-us     
 
     # LSP
     lua-language-server 
@@ -78,7 +73,21 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+  programs.bash = {
+    enable = true;
+    shellInit = ''
+      function y() {
+        local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+        yazi "$@" --cwd-file="$tmp"
+        if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+          builtin cd -- "$cwd"
+        fi
+        rm -f -- "$tmp"
+      }
+    '';
+  };
 }
+
 
 
 

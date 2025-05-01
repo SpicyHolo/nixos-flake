@@ -13,7 +13,6 @@ let
       VOLUME=$(get_volume)
       MUTE=$(is_mute)
       
-      BAR=$(seq -s "─" $(($VOLUME/5)) | sed 's/[0-9]//g')
       echo "Volume: $VOLUME, muted: $MUTE"
       echo "$BAR"
       if [ "$MUTE" = "yes" ]; then
@@ -27,7 +26,7 @@ let
               ICON=" " # High volume icon
           fi
       fi
-      dunstify -r 101 -u low -t 1000 "$ICON $VOLUME $BAR"
+      dunstify -h int:value:$VOLUME -r 101 -u low -t 1000 "$ICON $VOLUME"
     }
 
     send_notification

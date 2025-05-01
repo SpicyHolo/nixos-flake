@@ -10,10 +10,8 @@ let
 
     function send_notification {
       BRIGHTNESS=$(get_brightness)
-      
-      BAR=$(seq -s "─" $(($BRIGHTNESS/5)) | sed 's/[0-9]//g')
       ICON="󰃠 "
-      dunstify -r 102 -u low -t 1000 "$ICON $BRIGHTNESS $BAR"
+      dunstify -h int:value:$BRIGHTNESS -r 102 -u low -t 1000 "$ICON $BRIGHTNESS $BAR"
     }
 
     send_notification
