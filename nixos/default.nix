@@ -67,6 +67,7 @@
   };
 
   services.printing.enable = true;
+  services.printing.drivers = [ pkgs.epson-escpr ];
 
   networking = {
     hostName = "nixos-holo"; # Define your hostname.

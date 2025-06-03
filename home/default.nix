@@ -75,7 +75,7 @@
   programs.home-manager.enable = true;
   programs.bash = {
     enable = true;
-    shellInit = ''
+    bashrcExtra = ''
       function y() {
         local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
         yazi "$@" --cwd-file="$tmp"

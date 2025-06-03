@@ -76,10 +76,10 @@ in {
         "5, monitor:HDMI-A-1"
       ];
       
-      windowrule = [
-        "workspace 3, $browser"
-        "workspace 4, vesktop"
-        "workspace 5, Spotify"
+      windowrulev2 = [
+        "workspace 3, class:$browser"
+        "workspace 4, class:vesktop"
+        "workspace 5, class:Spotify"
       ];
 
       # Default apps
