@@ -73,6 +73,16 @@
     hostName = "nixos-holo"; # Define your hostname.
     networkmanager.enable = true;  # Easiest to use and most distros use this by default.
     nameservers = ["8.8.8.8" "8.8.4.4"];
+    # extraHosts = 
+    # ''
+    # 127.0.0.1 kemono.su
+    # 127.0.0.1 deviantart.com
+    # 127.0.0.1 giantessworld.net
+    # 127.0.0.1 ex-hentai.org
+    # 127.0.0.1 e-hentai.org
+    # 127.0.0.1 pixiv.net
+    # 127.0.0.1 vk.com
+    # '';
   };
 
   # Allow unfree
